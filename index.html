@@ -28,12 +28,13 @@
     Enter your text here:<br>
     <textarea rows=8 columns=40 id="text" onkeypress="update()"></textarea>
 
-    <p id="bytes">0 UTF-8 bytes</p>
+    <p id="bytes"></p>
 
     Choose your encoding:
     <select id="encoding" onclick="update()">
       <option value="1" selected>UTF-8</option>
       <option value="2">UTF-16</option>
     </select>
+    <script>update();</script>
   </body>
 </html>
