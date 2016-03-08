@@ -10,7 +10,7 @@
         else if (encoding == 1) bytes = text.replace(/([\uD800-\uDBFF][\uDC00-\uDFFF])|[^]/g,function(x,y){return y?"xxxx":x.charCodeAt(0)>=0x0800?"xxx":x.charCodeAt(0)>=0x0080?"xx":"x"}).length + " UTF-8 bytes";
         else if (encoding == 2) bytes = text.length + " UTF-16 bytes";
         document.getElementById("bytes").innerHTML = bytes;
-      },10); }
+      },20); }
     </script>
   </head>
   
