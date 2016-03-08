@@ -1,3 +1,26 @@
-<link rel="stylesheet" type="text/css" href="../style/style.css">
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../style/style.css">
+    <script>
+      function update(text) {
+        var encoding = document.getElementById("encoding").value;
+        alert(encoding);
+      }
+    </script>
+  </head>
+  
+  <body>
+    Enter your text here:<br>
+    <textarea rows=8 columns=40 id="text" onkeypress="update(this.value)"></textarea>
 
-This is just a test for now.
+    <p id="bytes">0 UTF-8 bytes</p>
+
+    Choose your encoding:
+    <select id="encoding">
+      <option value="0">chars</option>
+      <option value="1" selected>UTF-8</option>
+      <option value="2">UTF-16</option>
+    </select>
+  </body>
+</html>
