@@ -3,14 +3,14 @@
   <head>
     <link rel="stylesheet" type="text/css" href="../style/style.css">
     <script>
-      function update(text) {
+      function update(text) { setTimeout(function(){
         var encoding = document.getElementById("encoding").value;
         var bytes = "ERROR";
         if (encoding == 0) bytes = (text.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[^]/g)||[]).length + " chars";
         else if (encoding == 1) bytes = text.replace(/([\uD800-\uDBFF][\uDC00-\uDFFF])|[^]/g,function(x,y){return y?"xxxx":x.charCodeAt(0)>=0x0800?"xxx":x.charCodeAt(0)>=0x0080?"xx":"x"}).length + " UTF-8 bytes";
         else if (encoding == 2) bytes = text.length + " UTF-16 bytes";
         document.getElementById("bytes").innerHTML = bytes;
-      }
+      },10); }
     </script>
   </head>
   
@@ -21,7 +21,7 @@
     <p id="bytes">0 UTF-8 bytes</p>
 
     Choose your encoding:
-    <select id="encoding">
+    <select id="encoding" onclick="update(text.value)">
       <option value="0">chars</option>
       <option value="1" selected>UTF-8</option>
       <option value="2">UTF-16</option>
