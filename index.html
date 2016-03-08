@@ -17,9 +17,9 @@
         var text = document.getElementById("text").value;
         var encoding = document.getElementById("encoding").value;
         var bytes = "ERROR";
-        if (encoding == 1) bytes = text.replace(/([\uD800-\uDBFF][\uDC00-\uDFFF])|[^]/g,function(x,y){return y?"xxxx":x.charCodeAt(0)>=0x0800?"xxx":x.charCodeAt(0)>=0x0080?"xx":"x"}).length + " UTF-8 bytes";
-        else if (encoding == 2) bytes = text.length + " UTF-16 bytes";
-        document.getElementById("bytes").innerHTML = (text.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[^]/g)||[]).length + " chars, " + bytes;
+        if (encoding == 1) bytes = text.replace(/([\uD800-\uDBFF][\uDC00-\uDFFF])|[^]/g,function(x,y){return y?"xxxx":x.charCodeAt(0)>=0x0800?"xxx":x.charCodeAt(0)>=0x0080?"xx":"x"}).length + "</b> UTF-8 bytes";
+        else if (encoding == 2) bytes = text.length + "</b> UTF-16 bytes";
+        document.getElementById("bytes").innerHTML = "That's <b>" + (text.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[^]/g)||[]).length + "</b> chars, <b>" + bytes;
       },10); }
     </script>
   </head>
