@@ -55,7 +55,7 @@
         document.getElementById("bytes").innerHTML = "That's <b>" + chars + "</b> chars, " + (valid ? "totaling <b>" + bytes + "</b> " + encodings[encoding] + " bytes." : " but invalid " + encodings[encoding] + ".");
       },10); }
       function link() {
-        window.history.pushState('', 'bytes - The all-in-one online byte counter',
+        window.history.replaceState('', 'bytes - The all-in-one online byte counter',
           '/bytes/?e=' + document.getElementById('encoding').value
           + '\&t=' + encodeURIComponent(document.getElementById('text').value))
       }
