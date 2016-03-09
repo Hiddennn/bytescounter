@@ -42,8 +42,7 @@
       }
     </style>
     <script>
-      
-      function update(text) { setTimeout(function(){
+      function update() { setTimeout(function(){
         var text = document.getElementById("text").value,
             encoding = document.getElementById("encoding").value
             bytes = 0, 
@@ -55,8 +54,10 @@
         else if (encoding == 3) bytes = text.length, valid = /^[\x00-\xff]*$/.test(text);
         document.getElementById("bytes").innerHTML = "That's <b>" + chars + "</b> chars, " + (valid ? "totaling <b>" + bytes + "</b> " + encodings[encoding] + " bytes." : " but invalid " + encodings[encoding] + ".");
         document.getElementById("bytes").innerHTML += "<a id=\"link\" href=\"#\">Permalink</a>";
-        document.getElementById("link").onclick=function(){window.history.pushState('testing','bytes - The all-in-one online byte counter','/bytes?t='+encodeURIComponent(document.getElementById('textarea').value))}
       },10); }
+      function link() {
+        window.history.pushState('','bytes - The all-in-one online byte counter','/bytes?t='+encodeURIComponent(document.getElementById('textarea').value))
+      }
     </script>
   </head>
   
@@ -67,7 +68,7 @@
       <h4>The all-in-one online byte counter.</h4>
       <textarea rows=8 columns=40 id="text" onkeypress="update()">I ♥ bytes</textarea>
 
-      <p id="bytes"></p>
+      <p><span id="bytes"></span><a href="#" onclick="link()"></a></p>
 
       Choose a different encoding:
       <select id="encoding" onclick="update()">
