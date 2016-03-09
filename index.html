@@ -46,9 +46,7 @@
         if (encoding == 1) bytes = text.replace(/([\uD800-\uDBFF][\uDC00-\uDFFF])|[^]/g,function(x,y){return y?"xxxx":x.charCodeAt(0)>=0x0800?"xxx":x.charCodeAt(0)>=0x0080?"xx":"x"}).length;
         else if (encoding == 2) bytes = text.length * 2;
         else if (encoding == 3) bytes = text.length, valid = /^[\x00-\xff]*$/.test(text);
-        document.getElementById("bytes").innerHTML = valid ?
-          "That's <b>" + chars + "</b> chars, <b>" + bytes + "</b> " + encodings[encoding] + " bytes."
-        : "Invalid " + encodings[encoding] + ".";
+        document.getElementById("bytes").innerHTML = "That's <b>" + chars + "</b> chars, " + (valid ? "<b>" + bytes + "</b> " + encodings[encoding] + " bytes." : " but invalid " + encodings[encoding] + ".");
       },10); }
     </script>
   </head>
