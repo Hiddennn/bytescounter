@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
   <head>
+    <title>bytes - The all-in-one online byte counter</title>
     <link rel="stylesheet" type="text/css" href="../style/style.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <style>
@@ -51,7 +52,8 @@
         if (encoding == 1) bytes = text.replace(/([\uD800-\uDBFF][\uDC00-\uDFFF])|[^]/g,function(x,y){return y?"xxxx":x.charCodeAt(0)>=0x0800?"xxx":x.charCodeAt(0)>=0x0080?"xx":"x"}).length;
         else if (encoding == 2) bytes = text.length * 2;
         else if (encoding == 3) bytes = text.length, valid = /^[\x00-\xff]*$/.test(text);
-        document.getElementById("bytes").innerHTML = "That's <b>" + chars + "</b> chars, " + (valid ? "<b>" + bytes + "</b> " + encodings[encoding] + " bytes." : " but invalid " + encodings[encoding] + ".");
+        document.getElementById("bytes").innerHTML = "That's <b>" + chars + "</b> chars, " + (valid ? "totaling <b>" + bytes + "</b> " + encodings[encoding] + " bytes." : " but invalid " + encodings[encoding] + ".");
+        document.getElementById("bytes").innerHTML += "<a id=\"link\" href=\"javascript:history.pushState('','bytes - The all-in-one online byte counter','/bytes#'+encodeURIComponent(document.getElementById('textarea').value))\">Permalink</a>";
       },10); }
     </script>
   </head>
