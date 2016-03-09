@@ -55,7 +55,7 @@
         else if (encoding == 3) bytes = text.length, valid = /^[\x00-\xff]*$/.test(text);
         document.getElementById("bytes").innerHTML = "That's <b>" + chars + "</b> chars, " + (valid ? "totaling <b>" + bytes + "</b> " + encodings[encoding] + " bytes." : " but invalid " + encodings[encoding] + ".");
         document.getElementById("bytes").innerHTML += "<a id=\"link\" href=\"#\">Permalink</a>";
-        document.getElementById("link").onclick=function(){history.pushState('','bytes - The all-in-one online byte counter','/bytes?t='+encodeURIComponent(document.getElementById('textarea').value))}
+        document.getElementById("link").onclick=function(){window.history.pushState('testing','bytes - The all-in-one online byte counter','/bytes?t='+encodeURIComponent(document.getElementById('textarea').value))}
       },10); }
     </script>
   </head>
