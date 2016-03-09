@@ -3,14 +3,12 @@
   <head>
     <link rel="stylesheet" type="text/css" href="../style/style.css">
     <style>
-      body {
-        width: 70%;
-        margin-left: 15%;
+      #bg {
+        position: absolute;
+        width: 66%;
+        margin-left: 17%;
         margin-top: 0px;
-        height: 100%;
-        background-color: white;
-      }
-      body * {
+        height: 3000px;
         background-color: white;
       }
       textarea {
@@ -24,13 +22,14 @@
         var encoding = document.getElementById("encoding").value;
         var bytes = "ERROR";
         if (encoding == 1) bytes = text.replace(/([\uD800-\uDBFF][\uDC00-\uDFFF])|[^]/g,function(x,y){return y?"xxxx":x.charCodeAt(0)>=0x0800?"xxx":x.charCodeAt(0)>=0x0080?"xx":"x"}).length + "</b> UTF-8";
-        else if (encoding == 2) bytes = text.length + "</b> UTF-16";
+        else if (encoding == 2) bytes = text.length * 2 + "</b> UTF-16";
         document.getElementById("bytes").innerHTML = "That's <b>" + (text.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[^]/g)||[]).length + "</b> chars, <b>" + bytes + " bytes.";
       },10); }
     </script>
   </head>
   
   <body>
+    <div id="bg"></div>
     Enter your text here:<br>
     <textarea rows=8 columns=40 id="text" onkeypress="update()"></textarea>
 
