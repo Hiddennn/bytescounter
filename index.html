@@ -11,6 +11,10 @@
         height: 3000px;
         background-color: white;
       }
+      #fg {
+        width: 50%;
+        margin-left: 25%;
+      }
       textarea {
         margin-left: 0px;
         border-radius: 0px;
@@ -30,6 +34,7 @@
   
   <body>
     <div id="bg"></div>
+    <div id="fg">
     Enter your text here:<br>
     <textarea rows=8 columns=40 id="text" onkeypress="update()"></textarea>
 
@@ -41,5 +46,6 @@
       <option value="2">UTF-16</option>
     </select>
     <script>update();</script>
+    </div>
   </body>
 </html>
