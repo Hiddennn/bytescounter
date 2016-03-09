@@ -77,7 +77,7 @@
       </select>
       <script>
         if(/e=\d+/.test(location.search))document.getElementById('encoding').value=location.search.match(/e=(\d+)/)[1];
-        if(/t=.+/.test(location.search))document.getElementById('text').value=location.search.match(/t=([^&]+)/)[1];
+        if(/t=.+/.test(location.search))document.getElementById('text').value=decodeURIComponent(location.search.match(/t=([^&]+)/)[1]);
         update();
       </script>
     </div>
