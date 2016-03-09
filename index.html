@@ -30,19 +30,25 @@
         font-family: Monaco, Consolas, monospace;
         background-color: #E9E9E9;
       }
-      h2 {
+      h1 {
         font-family: Monaco, Consolas, monospace;
         text-align: center;
       }
     </style>
     <script>
       function update(text) { setTimeout(function(){
-        var text = document.getElementById("text").value;
-        var encoding = document.getElementById("encoding").value;
-        var bytes = 0;
+        var text = document.getElementById("text").value,
+            encoding = document.getElementById("encoding").value
+            bytes = 0, 
+            chars = (text.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[^]/g)||[]).length,
+            valid = true,
+            encodings = [,"UTF-8","UTF-16","ISO-8859-1"];
         if (encoding == 1) bytes = text.replace(/([\uD800-\uDBFF][\uDC00-\uDFFF])|[^]/g,function(x,y){return y?"xxxx":x.charCodeAt(0)>=0x0800?"xxx":x.charCodeAt(0)>=0x0080?"xx":"x"}).length;
         else if (encoding == 2) bytes = text.length * 2;
-        document.getElementById("bytes").innerHTML = "That's <b>" + (text.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[^]/g)||[]).length + "</b> chars, <b>" + bytes + "</b> " + [,"UTF-8","UTF-16"][encoding] + " bytes.";
+        else if (encoding == 3) bytes = text.length, valid = /^[\x00-\xff]*$/.test(text);
+        document.getElementById("bytes").innerHTML = valid ?
+          "That's <b>" + chars + "</b> chars, <b>" + bytes + "</b> " + encodings[encoding] + " bytes."
+        : "Invalid " + encodings[encoding] + ".";
       },10); }
     </script>
   </head>
@@ -50,16 +56,17 @@
   <body>
     <div id="bg"></div>
     <div id="fg">
-      <h2>bytes</h2>
+      <h1>bytes</h1>
       Enter your text here:<br>
       <textarea rows=8 columns=40 id="text" onkeypress="update()"></textarea>
 
       <p id="bytes"></p>
 
-      Choose your encoding:
+      Choose a different encoding:
       <select id="encoding" onclick="update()">
         <option value="1" selected>UTF-8</option>
         <option value="2">UTF-16</option>
+        <option value="2">ISO-8859-1</option>
       </select>
       <script>update();</script>
     </div>
