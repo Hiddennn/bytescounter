@@ -55,7 +55,9 @@
         document.getElementById("bytes").innerHTML = "That's <b>" + chars + "</b> chars, " + (valid ? "totaling <b>" + bytes + "</b> " + encodings[encoding] + " bytes." : " but invalid " + encodings[encoding] + ".");
       },10); }
       function link() {
-        location.hash = document.getElementById('encoding').value + ';' + encodeURIComponent(document.getElementById('text').value)
+        window.history.pushState('', 'bytes - The all-in-one online byte counter',
+          '/bytes/?e=' + document.getElementById('encoding').value
+          + '\&t=' + encodeURIComponent(document.getElementById('text').value))
       }
     </script>
   </head>
@@ -67,7 +69,7 @@
       <h4>The all-in-one online byte counter.</h4>
       <textarea rows=8 columns=40 id="text" onkeypress="update()">I ♥ bytes</textarea>
 
-      <p><span id="bytes"></span>&nbsp;<a href="" onclick="link()">Permalink</a></p>
+      <p><span id="bytes"></span>&nbsp;<a href="#" onclick="link()">Permalink</a></p>
 
       Choose a different encoding:
       <select id="encoding" onclick="update()">
@@ -76,9 +78,8 @@
         <option value="3">ISO-8859-1</option>
       </select>
       <script>
-        if(/#\d+;/.test(location.hash))
-          document.getElementById('encoding').value=location.hash.match(/#(\d+);/)[1],
-          document.getElementById('text').value=decodeURIComponent(location.hash.match(/#\d+;(.+)/)[1]);
+        if(/e=\d+/.test(location.search))document.getElementById('encoding').value=location.search.match(/e=(\d+)/)[1];
+        if(/t=.+/.test(location.search))document.getElementById('text').value=decodeURIComponent(location.search.match(/t=([^&]+)/)[1]);
         update();
       </script>
     </div>
