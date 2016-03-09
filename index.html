@@ -55,7 +55,7 @@
         document.getElementById("bytes").innerHTML = "That's <b>" + chars + "</b> chars, " + (valid ? "totaling <b>" + bytes + "</b> " + encodings[encoding] + " bytes." : " but invalid " + encodings[encoding] + ".");
       },10); }
       function link() {
-        window.history.pushState('','bytes - The all-in-one online byte counter','/bytes/?e='+document.getElementById('encoding').value+'t='+encodeURIComponent(document.getElementById('text').value))
+        window.history.pushState('','bytes - The all-in-one online byte counter','/bytes/?e='+document.getElementById('encoding').value+'&t='+encodeURIComponent(document.getElementById('text').value))
       }
     </script>
   </head>
@@ -75,7 +75,11 @@
         <option value="2">UTF-16</option>
         <option value="3">ISO-8859-1</option>
       </select>
-      <script>update();</script>
+      <script>
+        if(/e=\d+/.test(location.search))document.getElementById('encoding').value=location.search.match(/e=(\d+)/)[1];
+        if(/t=.+/.test(location.search))document.getElementById('text').value=location.search.match(/t=([^&]+)/)[1];
+        update();
+      </script>
     </div>
   </body>
 </html>
