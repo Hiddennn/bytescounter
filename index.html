@@ -78,6 +78,19 @@
         <option value="2">UTF-16</option>
         <option value="3">ISO-8859-1</option>
       </select>
+      
+      <div id="tab-1">
+        <table>
+          <tr>
+            <th>code points</th><th>bytes</th><th>bit format</th>
+            <td>000000-00007F</td><td>1</td><td>0xxxxxxx</td>
+            <td>000080-0007FF</td><td>1</td><td>110xxxxx 10xxxxxx</td>
+            <td>000800-00FFFF</td><td>1</td><td>1110xxxx 10xxxxxx 10xxxxxx</td>
+            <td>010000-10FFFF</td><td>1</td><td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+          </tr>
+        </table>
+      </div>
+      
       <script>
         if(/e=\d+/.test(location.search))document.getElementById('encoding').value=location.search.match(/e=(\d+)/)[1];
         if(/t=.+/.test(location.search))document.getElementById('text').value=decodeURIComponent(location.search.match(/t=([^&]+)/)[1]);
