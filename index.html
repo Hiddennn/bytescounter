@@ -30,6 +30,8 @@
       }
       textarea {
         margin-left: 0px;
+        margin-right: 0px;
+        width: 100%;
         border-radius: 0px;
         font-family: Monaco, Consolas, monospace;
         background-color: #E9FFE9;
@@ -76,7 +78,7 @@
     <div id="fg">
       <h1>bytes</h1>
       <h4>The all-in-one online byte counter.</h4>
-      <textarea rows=8 columns=40 id="text" onkeypress="update()">I ♥ bytes</textarea>
+      <textarea rows=8 id="text" onkeydown="update()">I ♥ bytes</textarea>
 
       <p><span id="bytes"></span>&nbsp;<a href="#" onclick="link()">Permalink</a></p>
 
