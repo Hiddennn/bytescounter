@@ -73,14 +73,58 @@
           bytes = text.length * 2;
         else if (encoding == "utf-32")
           bytes = chars * 4;
+        else if (encoding == "ascii")
+          bytes = text.length, valid = /^[\x00-\x7f]*$/.test(text);
         else if (encoding == "iso-8859-1")
           bytes = text.length, valid = /^[\x00-\xff]*$/.test(text);
+        else if (encoding == "iso-8859-2")
+          bytes = text.length, valid = /^[\x00-\xA0\u0104\u02D8\u0141\xA4\u013D\u015A\xA7\xA8\u0160\u015E\u0164\u0179\xAD\u017D\u017B\xB0\u0105\u02DB\u0142\xB4\u013E\u015B\u02C7\xB8\u0161\u015F\u0165\u017A\u02DD\u017E\u017C\u0154\xC1\xC2\u0102\xC4\u0139\u0106\xC7\u010C\xC9\u0118\xCB\u011A\xCD\xCE\u010E\u0110\u0143\u0147\xD3\xD4\u0150\xD6\xD7\u0158\u016E\xDA\u0170\xDC\xDD\u0162\xDF\u0155\xE1\xE2\u0103\xE4\u013A\u0107\xE7\u010D\xE9\u0119\xEB\u011B\xED\xEE\u010F\u0111\u0144\u0148\xF3\xF4\u0151\xF6\xF7\u0159\u016F\xFA\u0171\xFC\xFD\u0163\u02D9]*$/.test(text);
+        else if (encoding == "iso-8859-3")
+          bytes = text.length, valid = /^[\x00-\xA0\u0126\u02D8\xA3\xA4\u0124\xA7\xA8\u0130\u015E\u011E\u0134\xAD\u017B\xB0\u0127\xB2-\xB5\u0125\xB7\xB8\u0131\u015F\u011F\u0135\xBD\u017C\xC0\xC1\xC2\xC4\u010A\u0108\xC7-\xCF\xD1-\xD4\u0120\xD6\xD7\u011C\xD9-\xDC\u016C\u015C\xDF-\xE2\xE4\u010B\u0109\xE7-\xEF\xF1-\xF4\u0121\xF6\xF7\u011D\xF9-\xFC\u016D\u015D\u02D9]*$/.test(text);
+        else if (encoding == "iso-8859-4")
+          bytes = text.length, valid = /^[\x00-\xA0\u0104\u0138\u0156\xA4\u0128\u013B\xA7\xA8\u0160\u0112\u0122\u0166\xAD\u017D\xAF\xB0\u0105\u02DB\u0157\xB4\u0129\u013C\u02C7\xB8\u0161\u0113\u0123\u0167\u014A\u017E\u014B\u0100\xC1-\xC6\u012E\u010C\xC9\u0118\xCB\u0116\xCD\xCE\u012A\u0110\u0145\u014C\u0136\xD4\xD5\xD6\xD7\xD8\u0172\xDA\xDB\xDC\u0168\u016A\xDF\u0101\xE1-\xE6\u012F\u010D\xE9\u0119\xEB\u0117\xED\xEE\u012B\u0111\u0146\u014D\u0137\xF4-\xF8\u0173\xFA-\xFC\u0169\u016B\u02D9]*$/.test(text);
+        else if (encoding == "iso-8859-5")
+          bytes = text.length, valid = /^[\x00-\xA0\u0401-\u040C\xAD\u040E-\u044F\u2116\u0451-\u045C\xA7\u045E\u045F]*$/.test(text);
+        else if (encoding == "iso-8859-6")
+          bytes = text.length, valid = /^[\x00-\xA0\xA4\u060C\xAD\u061B\u061F\u0621-\u063A\u0640-\u0652]*$/.test(text);
+        else if (encoding == "iso-8859-7")
+          bytes = text.length, valid = /^[\x00-\xA0\u2018\u2019\xA3\u20AC\u20AF\xA6-\xA9\u037A\xAB-\xAD\u2015\xB0-\xB3\u0384-\u0386\xB7\u0388-\u038A\xBB\u038C\xBD\u038E-\u03A1\u03A3-\u03CE]*$/.test(text);
+        else if (encoding == "iso-8859-8")
+          bytes = text.length, valid = /^[\x00-\xA0\xA2-\xA9\xD7\xAB-\xB9\xF7\xBB-\xBE\u2017\u05D0-\u05EA\u200E\u200F]*$/.test(text);
+        else if (encoding == "iso-8859-9")
+          bytes = text.length, valid = /^[\x00-\xCF\u011E\xD1-\xDC\u0130\u015E\xDF-\xEF\u011F\xF1-\xFC\u0131\u015F\xFF]*$/.test(text);
+        else if (encoding == "iso-8859-10")
+          bytes = text.length, valid = /^[\x00-\xA0\u0104\u0112\u0122\u012A\u0128\u0136\xA7\u013B\u0110\u0160\u0166\u017D\xAD\u016A\u014A\xB0\u0105\u0113\u0123\u012B\u0129\u0137\xB7\u013C\u0111\u0161\u0167\u017E\u2015\u016B\u014B\u0100\xC1-\xC6\u012E\u010C\xC9\u0118\xCB\u0116\xCD-\xD0\u0145\u014C\xD3-\xD6\u0168\xD8\u0172\xDA-\xDF\u0101\xE1-\xE6\u012F\u010D\xE9\u0119\xEB\u0117\xED-\xF0\u0146\u014D\xF3-\xF6\u0169\xF8\u0173\xFA-\xFE\u0138]*$/.test(text);
+        else if (encoding == "iso-8859-11")
+          bytes = text.length, valid = /^[\x00-\xA0\u0E01-\u0E3A\u0E3F-\u0E5B]*$/.test(text);
+        else if (encoding == "iso-8859-13")
+          bytes = text.length, valid = /^[\x00-\xA0\u201D\xA2-\xA4\u201E\xA6\xA7\xD8\xA9\u0156\xAB-\xAE\xC6\xB0-\xB3\u201C\xB5-\xB7\xF8\xB9\u0157\xBB-\xBE\xE6\u0104\u012E\u0100\u0106\xC4\xC5\u0118\u0112\u010C\xC9\u0179\u0116\u0122\u0136\u012A\u013B\u0160\u0143\u0145\xD3\u014C\xD5-\xD7\u0172\u0141\u015A\u016A\xDC\u017B\u017D\xDF\u0105\u012F\u0101\u0107\xE4\xE5\u0119\u0113\u010D\xE9\u017A\u0117\u0123\u0137\u012B\u013C\u0161\u0144\u0146\xF3\u014D\xF5-\xF7\u0173\u0142\u015B\u016B\xFC\u017C\u017E\u2019]*$/.test(text);
+        else if (encoding == "iso-8859-14")
+          bytes = text.length, valid = /^[\x00-\xA0\u1E02\u1E03\xA3\u010A\u010B\u1E0A\xA7\u1E80\xA9\u1E82\u1E0B\u1EF2\xAD\xAE\u0178\u1E1E\u1E1F\u0120\u0121\u1E40\u1E41\xB6\u1E56\u1E81\u1E57\u1E83\u1E60\u1EF3\u1E84\u1E85\u1E61\xC0-\xCF\u0174\xD1-\xD6\u1E6A\xD8-\xDD\u0176\xDF-\xEF\u0175\xF1-\xF6\u1E6B\xF8\xFD\u0177\xFF]*$/.test(text);
+        else if (encoding == "iso-8859-15")
+          bytes = text.length, valid = /^[\x00-\xA3\u20AC\xA5\u0160\xA7\u0161\xA9-\xB3\u017D\xB5-\xB7\u017E\xB9-\xBB\u0152\u0153\u0178\xBF-\xFF]*$/.test(text);
+        else if (encoding == "iso-8859-16")
+          bytes = text.length, valid = /^[\x00-\xA0\u0104\u0105\u0141\u20AC\u201E\u0160\xA7\u0161\xA9\u0218\xAB\u0179\xAD\u017A\u017B\xB0\xB1\u010C\u0142\u017D\u201D\xB6\xB7\u017E\u010D\u0219\xBB\u0152\u0153\u0178\u017C\xC0-\xC2\u0102\xC4\u0106\xC6-\xCF\u0110\u0143\xD2-\xD4\u0150\xD6\u015A\u0170\xD9-\xDC\u0118\u021A\xDF-\xE2\u0103\xE4\u0107\xE6-\xEF\u0111\u0144\xF2-\xF4\u0151\xF6\u015B\u0171\xF9-\xFC\u0119\u021B\xFF]*$/.test(text);
+        else if (encoding == "cp437")
+          bytes = text.length, valid = /^[\x00\x20-\x7E\xA0-\xA3\xA5\xA7\xAA-\xAC\xB0-\xB2\xB5-\xB7\xBA-\xBD\xBF\xC4-\xC7\xC9\xD1\xD6\xDC\xDF-\xE2\xE4-\xEF\xF1-\xF4\xF6\xF7\xF9\xFA-\xFC\xFF\u0192\u0393\u0398\u03A3\u03A6\u03A9\u03B1\u03B4\u03B5\u03C0\u03C3\u03C4\u03C6\u2022\u203C\u207F\u20A7\u2190-\u2195\u21A8\u2219\u221A\u221E\u221F\u2229\u2248\u2261\u2264\u2265\u2302\u2310\u2320\u2321\u2500\u2502\u250C\u2510\u2514\u2518\u251C\u2524\u252C\u2534\u253C\u2550-\u256C\u2580\u2582\u2584\u2588\u258C\u2590-\u2593\u25A0\u25B2\u25B6\u25BC\u25C0\u25CB\u25D8\u25D9\u263A-\u263C\u2640\u2642\u2660\u2663\u2665\u2666\u266A\u266B]*$/.test(text);
+        
+        // Here's the process by which I got these regexes:
+        // 1. Open the Wikipedia page for the encoding.
+        // 2. Copy all text in the encoding table.
+        // 3. Open the browser console, type two backticks, and place the cursor between them.
+        // 4. Paste the text, escaping the backtick in the string with a backslash.
+        // 5. Paste the following code after the backtick-string:
+        // .match(/[0-9A-F]{4}/g).sort().map(x=>"\\u"+x).join``.replace(/\\u00/g,"\\x")
+        //   Note: I did not think of the .sort() step until after doing all of the ISO-8859 encodings.
+        // 6. Press enter and you have a string to go in your regex, like so: /^[string]*$/
+        // 7. Manually compress the string by replacing runs of adjacent charcodes with \x..-\x.. or \u....-\u....
+        
         document.getElementById("bytes").innerHTML = "That's <b>" + chars + "</b> chars, " + (valid ? "totaling <b>" + bytes + "</b> " + encoding.toUpperCase() + " bytes." : " but invalid " + encoding.toUpperCase() + ".");
       },10); }
       function link() {
         window.history.pushState('', 'bytes - The all-in-one online byte counter',
           '/bytes/?e=' + document.getElementById('encoding').value
-          + '\&t=' + encodeURIComponent(document.getElementById('text').value))
+          + '\&t=' + escape(document.getElementById('text').value));
       }
     </script>
   </head>
@@ -99,11 +143,27 @@
         <option value="utf-8" selected>UTF-8</option>
         <option value="utf-16">UTF-16</option>
         <option value="iso-8859-1">ISO-8859-1</option>
+        <option value="cp437">CP437</option>
+        <option value="ascii">ASCII</option>
         <option value="chars">--------</option>
         <option value="utf-32">UTF-32</option>
+        <option value="iso-8859-2">ISO-8859-2</option>
+        <option value="iso-8859-3">ISO-8859-3</option>
+        <option value="iso-8859-4">ISO-8859-4</option>
+        <option value="iso-8859-5">ISO-8859-5</option>
+        <option value="iso-8859-6">ISO-8859-6</option>
+        <option value="iso-8859-7">ISO-8859-7</option>
+        <option value="iso-8859-8">ISO-8859-8</option>
+        <option value="iso-8859-9">ISO-8859-9</option>
+        <option value="iso-8859-10">ISO-8859-10</option>
+        <option value="iso-8859-11">ISO-8859-11</option>
+        <option value="iso-8859-13">ISO-8859-13</option>
+        <option value="iso-8859-14">ISO-8859-14</option>
+        <option value="iso-8859-15">ISO-8859-15</option>
+        <option value="iso-8859-16">ISO-8859-16</option>
       </select>
       
-      <p>Here's a bookmarklet to count UTF-8 bytes on the fly: <a href='javascript:(function(){var%20d=document,e=d.activeElement;alert((String(d.getSelection())||("selectionStart"in%20e?e.value.slice(e.selectionStart,e.selectionEnd):"")).replace(/([\uD800-\uDBFF][\uDC00-\uDFFF])|[^]/g,function(x,y){return%20y?"xxxx":x.charCodeAt(0)>=0x0800?"xxx":x.charCodeAt(0)>=0x0080?"xx":"x"}).length+"%20UTF-8%20bytes")})()'>Count UTF-8 bytes</a></p>
+      <p>Here's a bookmarklet to count chars and UTF-8 bytes on the fly: <a href='javascript:(function(){var%20d=document,e=d.activeElement,c=0,b=0,s=String(d.getSelection())||("selectionStart"in%20e?e.value.slice(e.selectionStart,e.selectionEnd):"");s.replace(/([\uD800-\uDBFF][\uDC00-\uDFFF])|[^]/g,function(x,y){c++;b+=(y?4:x.charCodeAt(0)>=0x0800?3:x.charCodeAt(0)>=0x0080?2:1)});alert(c+"%20chars,%20"+b+"%20UTF-8%20bytes")})()'>Count chars/bytes</a></p>
       
       <!--
       <h3>Encoding info</h3>
