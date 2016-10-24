@@ -4,9 +4,7 @@ An online byte-counter that counts many different encodings. https://ethproducti
 ### Currently supported encodings
 
 - Char-count
-- UTF-8
-- UTF-16
-- UTF-32
+- UTF-8, -16, and -32
 - ISO-8859-1 through -16
 - CP437
 - ASCII
