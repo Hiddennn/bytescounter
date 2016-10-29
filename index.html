@@ -107,6 +107,8 @@
           bytes = text.length, valid = /^[\x00-\xA0\u0104\u0105\u0141\u20AC\u201E\u0160\xA7\u0161\xA9\u0218\xAB\u0179\xAD\u017A\u017B\xB0\xB1\u010C\u0142\u017D\u201D\xB6\xB7\u017E\u010D\u0219\xBB\u0152\u0153\u0178\u017C\xC0-\xC2\u0102\xC4\u0106\xC6-\xCF\u0110\u0143\xD2-\xD4\u0150\xD6\u015A\u0170\xD9-\xDC\u0118\u021A\xDF-\xE2\u0103\xE4\u0107\xE6-\xEF\u0111\u0144\xF2-\xF4\u0151\xF6\u015B\u0171\xF9-\xFC\u0119\u021B\xFF]*$/.test(text);
         else if (encoding == "cp437")
           bytes = text.length, valid = /^[\x00\x20-\x7E\xA0-\xA3\xA5\xA7\xAA-\xAC\xB0-\xB2\xB5-\xB7\xBA-\xBD\xBF\xC4-\xC7\xC9\xD1\xD6\xDC\xDF-\xE2\xE4-\xEF\xF1-\xF4\xF6\xF7\xF9\xFA-\xFC\xFF\u0192\u0393\u0398\u03A3\u03A6\u03A9\u03B1\u03B4\u03B5\u03C0\u03C3\u03C4\u03C6\u2022\u203C\u207F\u20A7\u2190-\u2195\u21A8\u2219\u221A\u221E\u221F\u2229\u2248\u2261\u2264\u2265\u2302\u2310\u2320\u2321\u2500\u2502\u250C\u2510\u2514\u2518\u251C\u2524\u252C\u2534\u253C\u2550-\u256C\u2580\u2582\u2584\u2588\u258C\u2590-\u2593\u25A0\u25B2\u25B6\u25BC\u25C0\u25CB\u25D8\u25D9\u263A-\u263C\u2640\u2642\u2660\u2663\u2665\u2666\u266A\u266B]*$/.test(text);
+        else if (encoding == "cp1252")
+          bytes = text.length, valid = /^[\x00-\x7F\xA0-\xFF\u0152\u0153\u0160\u0161\u0178\u017D\u017E\u0192\u02C6\u02DC\u2013\u2014\u2018-\u201A\u201C-\u201E\u2020-\u2022\u2026\u2030\u2039\u203A\u20AC\u2122]*$/.test(text);
         
         // Here's the process by which I got these regexes:
         // 1. Open the Wikipedia page for the encoding.
@@ -144,6 +146,7 @@
         <option value="utf-16">UTF-16</option>
         <option value="iso-8859-1">ISO-8859-1</option>
         <option value="cp437">CP437</option>
+        <option value="cp1252">CP1252</option>
         <option value="ascii">ASCII</option>
         <option value="chars">--------</option>
         <option value="utf-32">UTF-32</option>
