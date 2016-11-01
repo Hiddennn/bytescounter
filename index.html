@@ -65,6 +65,8 @@
             bytes = 0,
             chars = (text.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[^]/g)||[]).length,
             valid = true;
+        localStorage.setItem("text", text);
+        localStorage.setItem("encoding", encoding);
         if (encoding == "chars")
           return document.getElementById("bytes").innerHTML = "That's <b>" + chars + "</b> chars.";
         else if (encoding == "utf-8")
@@ -182,6 +184,8 @@
       -->
       
       <script>
+        if (localStorage.getItem("text") !== null) document.getElementById("text").value = localStorage.getItem("text");
+        if (localStorage.getItem("encoding") !== null) document.getElementById("encoding").value = localStorage.getItem("encoding");
         if (/e=\d+(?=&|$)/.test(location.search)) document.getElementById('encoding').value = [, "utf-8", "utf-16", "iso-8859-1", "utf-32"][location.search.match(/e=(\d+)/)[1]] || "chars";
         else if (/e=[^&]+/.test(location.search)) document.getElementById('encoding').value = encodingRegex.reduce(function (x, y, i) { return ((typeof x === "string") && y.test(x)) ? encodings[i].toLowerCase() : x; }, location.search.match(/e=([^&]+)/)[1]);
         if (/t=.+/.test(location.search)) document.getElementById('text').value = decodeURIComponent(location.search.match(/t=([^&]+)/)[1]);
