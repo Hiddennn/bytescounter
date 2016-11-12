@@ -128,7 +128,14 @@
       function link() {
         window.history.pushState('', 'bytes - The all-in-one online byte counter',
           '/bytes/?e=' + document.getElementById('encoding').value
-          + '\&t=' + escape(document.getElementById('text').value));
+          + '\&t=' + escapeURL(document.getElementById('text').value));
+      }
+      function escapeURL(URL) {
+        return encodeURIComponent(URL)
+          .replace(/\(/g, "%28")
+          .replace(/\)/g, "%29")
+          .replace(/\*/g, "%2A")
+          .replace(/\./g, "%2E");
       }
     </script>
   </head>
