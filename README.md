@@ -1,5 +1,6 @@
 # bytes
-An online byte-counter that counts many different encodings. https://ethproductions.github.io/bytes
+An online byte-counter that counts many different encodings. 
+https://www.fullegg.top/bytes/
 
 ### Currently supported encodings
 
